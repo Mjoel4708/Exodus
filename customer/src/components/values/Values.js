@@ -4,7 +4,7 @@ import { Container, Col, Row } from 'react-bootstrap';
 
 function Values() {
     return (
-        <Container  style={{padding:"20px", textAlign: "center", fontFamily: "Oswald, sans-serif"}}>
+        <Container className="justify-content-center"  style={{padding:"30px", textAlign: "center", fontFamily: "Oswald, sans-serif"}}>
             <Row>
                 
                 <Col>

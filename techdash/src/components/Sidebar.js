@@ -1,6 +1,12 @@
 import React from 'react';
 import { ProSidebar, Menu, MenuItem, SubMenu,SidebarHeader, SidebarFooter, SidebarContent } from 'react-pro-sidebar';
-import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart, FaPowerOff } from 'react-icons/fa'
+import { FaTachometerAlt, FaComments, FaList, FaCalendarAlt, FaRegLaughWink, FaHeart, FaPowerOff } from 'react-icons/fa'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 import 'react-pro-sidebar/dist/css/styles.css';
 import {Badge} from "react-bootstrap";
 function Sidebar() {
@@ -15,12 +21,14 @@ function Sidebar() {
             <SidebarContent style={{height: "500px"}}>
                 <Menu iconShape="circle">
                 <MenuItem
+                    as={Link} to="/"
                     icon={<FaTachometerAlt />}
                     suffix={<Badge variant="alert">{"New"}</Badge>}
                 >
                     {"Dashbord"}
                 </MenuItem>
-                <MenuItem icon={<FaGem />}> {"Components"}</MenuItem>
+                <MenuItem icon={<FaComments />}> {"Chats"}<Link to="/messages" /></MenuItem>
+                <MenuItem as={Link} to="/events" icon={<FaCalendarAlt />}> {"Calendar"}<Link to="/events" /></MenuItem>
                 </Menu>
                 <Menu iconShape="circle">
                 <SubMenu

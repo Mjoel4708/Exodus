@@ -1,23 +1,20 @@
 import React from 'react';
-import { Col, Row } from 'react-bootstrap';
-import { Sidebar, Profile, Messages } from './components';
+import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
+
+import { Home,  Messages, Events } from "./components";
+
+
 function App() {
   return (
-    <Row>
-      <Col style={{margin: "0px", padding: "0px"}}>
-        <Sidebar />
-      </Col>
-      
-      <Col style={{marginLeft: "-12px", paddingLeft: "0px", padding: "0px"}}>
-        <Profile />
-      </Col>
-      <span class="border-left"></span>
-      
-      <Col style={{margin: "-1px", padding: "0px"}}>
-        <Messages />
-      </Col>
-      <span class="border-left"></span>
-    </Row>
+    <div>
+      <Route>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/events" exact component={Events} />
+          <Route path="/messages" exact component={Messages} />
+        </Switch>
+      </Route>
+    </div>
   );
 }
 

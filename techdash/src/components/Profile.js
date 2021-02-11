@@ -4,7 +4,7 @@ import { FaUserCircle, FaMapMarkedAlt, FaHardHat } from "react-icons/fa";
 function Profile() {
     return (
         <div>
-            <Jumbotron fluid style={{height: "auto", backgroundAttachment: "auto", backgroundSize: "cover", backgroundImage: 'url(https://images.unsplash.com/photo-1481305717251-830ac10fb6e6?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTF8fHBhdHRlcm5zfGVufDB8MHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60)', backgroundRepeat: "no-repeat", fontFamily: "Oswald, sans-serif"}}>
+            <Jumbotron fluid style={{width: "auto", height: "auto", backgroundAttachment: "auto", backgroundSize: "cover", backgroundImage: 'url(https://images.unsplash.com/photo-1481305717251-830ac10fb6e6?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTF8fHBhdHRlcm5zfGVufDB8MHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60)', backgroundRepeat: "no-repeat", fontFamily: "Oswald, sans-serif"}}>
             <Container>
                 <h1>My profile</h1>
                 

@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "techdash9f0176aa": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}

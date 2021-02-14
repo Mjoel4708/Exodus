@@ -1,9 +1,16 @@
 import React from 'react'
 import { Card, Button, Form, InputGroup, Col} from 'react-bootstrap';
 import { FaComments, FaSearch } from 'react-icons/fa';
+import { Sidebar } from "../components";
 function Messages() {
+    const [user, setUser] = React.useState();
     return (
-        <div>
+        <div style={{display: "flex", flexDirection: "row"}}>
+            <div>
+                <Sidebar />
+            </div>
+            
+            <div>
             <Card className="text-left  shadow-lg" style={{ width: '250px', background: "#f0f1f2", position: "absolute", padding: "8px", margin: "7px" }}>
                 <Card.Body>
                     <Card.Title>Messages <FaComments /></Card.Title>
@@ -33,6 +40,7 @@ function Messages() {
                     <Card.Link href="#">Another Link</Card.Link>
                 </Card.Body>
             </Card> 
+            </div>
         </div>
     )
 }

@@ -7,8 +7,15 @@ import {
     Route,
     Link
   } from "react-router-dom";
+import Amplify, { Auth } from 'aws-amplify';
 import 'react-pro-sidebar/dist/css/styles.css';
-import {Badge} from "react-bootstrap";
+import {Badge, Button} from "react-bootstrap";
+
+function signOut() {
+    Auth.signOut()
+      .then(data => console.log(data))
+      .catch(err => console.log(err))
+  }
 function Sidebar() {
     return (
         <ProSidebar>
@@ -73,18 +80,16 @@ function Sidebar() {
                     textAlign: "left"
                 }}
                 >
-                <a
-                    href="https://github.com/azouaoui-med/react-pro-sidebar"
-                    target="_blank"
-                    className="sidebar-btn"
-                    rel="noopener noreferrer"
-                    
+                <Button
+                    rounded
+                    onClick={signOut}
+                    variant="dark"
                 >
                     
                     
                     <FaPowerOff />
                     
-                </a>
+                </Button>
                 </div>
             </SidebarFooter>
       </ProSidebar>

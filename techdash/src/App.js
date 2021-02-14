@@ -1,11 +1,25 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
-
+import { withAuthenticator, AmplifyAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
+import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
+import Amplify, { Auth } from 'aws-amplify';
+import awsconfig from './aws-exports';
 import { Home,  Messages, Events } from "./components";
+Amplify.configure(awsconfig);
 
 
-function App() {
-  return (
+
+const App = () => {
+  const [authState, setAuthState] = React.useState();
+  const [user, setUser] = React.useState();
+
+  React.useEffect(() => {
+      onAuthUIStateChange((nextAuthState, authData) => {
+          setAuthState(nextAuthState);
+          setUser(authData)
+      });
+  }, []);
+  return authState === AuthState.SignedIn && user ? (
     <div>
       <Route>
         <Switch>
@@ -15,7 +29,10 @@ function App() {
         </Switch>
       </Route>
     </div>
-  );
+  ): 
+  (
+    <AmplifyAuthenticator />
+  )
 }
 
-export default App;
+export default withAuthenticator(App);

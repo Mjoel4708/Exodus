@@ -1,13 +1,15 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
-import ThemeSwitcher from 'react-theme-switcher';
-import { Home, Login, Error } from './components';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import { Home, Login, Error, Landing } from './components';
 function App() {
   return (
     
-      <Router>
+    
+       <Router>
         <Switch>
-          <Route path="/" exact component={Home} />
+          <Route path="/" exact component={Landing} />
+          <Route path="/home" exact component={Home} />
           <Route path="/login" component={Login} />
           <Route path="*" component={Error} />
         </Switch>
@@ -21,11 +23,6 @@ function App() {
     
   );
   
-}
-const home = () =>{
-  <div>
-    <p>Hello world</p>
-  </div>
 }
 
 export default App;

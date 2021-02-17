@@ -6,8 +6,13 @@ import {
     Route,
     Link
   } from "react-router-dom";
-
-import { Login } from "../"
+import Image from "/home/mjoel4708/test/Exodus/customer/src/components/Hand-i-man.png";
+import Amplify, { Auth } from 'aws-amplify';
+function signOut() {
+    Auth.signOut()
+      .then(data => console.log(data))
+      .catch(err => console.log(err))
+  }
 function NavBar() {
    
     return (
@@ -16,7 +21,7 @@ function NavBar() {
                 <Row xs={"auto"} sm={7} md={10} sm={12}>
                     <Col lg={10} sm={5} md={9}>
                         <Navbar expand="lg" variant="dark">
-                        <Navbar.Brand as={Link} to="/home">React-Bootstrap</Navbar.Brand>
+                        <Navbar.Brand as={Link} to="/home"><img src={Image} width="100px" height="100px" className="img-flex rounded float-center" /></Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="mr-auto">
@@ -25,8 +30,8 @@ function NavBar() {
                             
                             <Nav.Link href="#link">Link</Nav.Link>
                             <NavDropdown title="Quick access" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Sign up</NavDropdown.Item>
-                                <NavDropdown.Item as={Link} to="/login">Log In</NavDropdown.Item>
+                                <NavDropdown.Item onClick={signOut}>Log Out</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/login">My Account</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.3">Help</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action/3.4">Contact us</NavDropdown.Item>
@@ -47,11 +52,9 @@ function NavBar() {
                     
                 </Row>
                 <Row className="justify-content-center" style={{paddingTop: "170px"}}>
-                    <h1 style={{color: "#FFFFFF"}} variant="dark">ℍ𝕒𝕟𝕕-𝕖-𝕞𝕒𝕟</h1>
+                    <h1 style={{color: "#FFFFFF"}} variant="dark">ℍ𝕒𝕟𝕕-i-𝕞𝕒𝕟</h1>
                 </Row>
-                <Row className="justify-content-center" inline style={{paddingTop: "70px"}}>
-                    <Button variant="warning" size="lg">Register</Button>
-                </Row>
+                
                 <Row flex className="justify-content-center">
                     <Form inline style={{paddingTop: "50px", opacity: 0.7}}>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />

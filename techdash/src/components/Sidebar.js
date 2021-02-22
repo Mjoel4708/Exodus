@@ -28,10 +28,10 @@ function Sidebar() {
             <SidebarContent style={{height: "500px"}}>
                 <Menu iconShape="circle">
                 <MenuItem
-                    as={Link} to="/"
+                    
                     icon={<FaTachometerAlt />}
                     suffix={<Badge variant="alert">{"New"}</Badge>}
-                >
+                ><Link to="/"></Link>
                     {"Dashbord"}
                 </MenuItem>
                 <MenuItem icon={<FaComments />}> {"Chats"}<Link to="/messages" /></MenuItem>

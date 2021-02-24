@@ -19,7 +19,7 @@ function Profile() {
                 <Card.Header>
                     <Image className="text-left  shadow-lg" roundedCircle src="https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584__340.png" style={{padding: "8px", backgroundColor: "#f6f6f6", width: "150px", height: "150px", marginTop: "-60px"}} />
                     <h5 style={{color: "#b08f26", fontFamily: "Roboto Slab", fontWeight: "800", paddingTop: "20px", paddingBottom: "15px"}}>Christian Louboutin</h5>
-                    <div className="text-right"><Link to="/edit" style={{color: "#b08f26"}}><FaEdit />Edit</Link> </div>
+                    
                     <h6><FaHardHat /> Interior Designer</h6>
                     <h6><FaMapMarkedAlt /> Location</h6>
                 </Card.Header>

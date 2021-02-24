@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Link, Route, Redirect } from "react-router-dom";
 import { withAuthenticator, AmplifyAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import Amplify, { Auth } from 'aws-amplify';
@@ -23,18 +23,22 @@ const App = () => {
       });
   }, []);
   
-  
+  const [loggedIn, setLoggedIn ] = React.useState(true);
   return authState === AuthState.SignedIn && user ? (
     <div>
       {user.attributes.email}
+      {loggedIn ? <Form loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> :
       <Route>
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/events" exact component={Events} />
-          <Route path="/messages" exact component={Messages} />
-          <Route path="/edit" exact component={Form} />
-        </Switch>
-      </Route>
+      
+
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/events" exact component={Events} />
+        <Route path="/messages" exact component={Messages} />
+        
+      </Switch>
+    </Route>}
+      
     </div>
   ): 
   (

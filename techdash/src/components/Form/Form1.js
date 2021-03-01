@@ -22,7 +22,7 @@ function Form1({ loggedIn, setLoggedIn }) {
             </Col>
             
             <Col md={7} className="justify-content-center">
-                <h6>Almost there...</h6>
+                <h6>Register a service</h6>
                 
                 <Form onSubmit={handleSubmit(onSubmit)}>
                 <Form.Row>
@@ -68,10 +68,7 @@ function Form1({ loggedIn, setLoggedIn }) {
                 <Form.Row>
                     
                     
-                    <Form.Group as={Col} controlId="formGridState">
-                    <Form.Label>Age</Form.Label>
-                    <Form.Control type="number" name="age" ref={register({required: true, min: 18, max: 100})} />
-                    </Form.Group>
+                    
 
                     <Form.Group as={Col} controlId="formGridState">
                     <Form.Label>Gender</Form.Label>
@@ -85,10 +82,32 @@ function Form1({ loggedIn, setLoggedIn }) {
 
                     
                 </Form.Row>
+                <Form.Row>
+                    <Form.Group as={Col} controlId="serviceName">
+                    <Form.Label>Service Name</Form.Label>
+                    <Form.Control type="text" name="service" ref={register}  />
+                    </Form.Group>
+                    
+                    <Form.Group as={Col} controlId="formGridCategory">
+                    <Form.Label>Service Category</Form.Label>
+                    <Form.Control as="select" name="cat" defaultValue="Choose..." ref={register} >
+                        <option>Constuction</option>
+                        <option>Plumber</option>
+                        <option>Electritian</option>
+                        <option>Computer repair</option>
+                        <option>Other</option>
+                    </Form.Control>
+                    </Form.Group>
 
-                <Form.Group controlId="formGridAddress2">
-                    <Form.Label>Address </Form.Label>
-                    <Form.Control type="number" name="address"  ref={register}/>
+                    <Form.Group as={Col} controlId="formGridZip">
+                    <Form.Label>Your hourly rate</Form.Label>
+                    <Form.Control type="text" name="district" />
+                    </Form.Group>
+                </Form.Row>
+
+                <Form.Group controlId="formGridDescription">
+                    <Form.Label>Description </Form.Label>
+                    <Form.Control as="textarea" row={3}  ref={register}/>
                 </Form.Group>
                 
 

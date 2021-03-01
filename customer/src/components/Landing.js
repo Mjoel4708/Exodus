@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Button, Navbar, NavDropdown, Nav } from "react-bootstrap";
 import { Paper, Grid, Typography, AppBar, IconButton, Toolbar } from '@material-ui/core';
 import { Link } from "react-router-dom";
-import Image from "/home/mjoel4708/test/Exodus/customer/src/components/Hand-i-man.png";
+import Image from "/home/mjoel4708/Exodus/customer/src/components/Hand-i-man.png";
 
 
 function Landing() {

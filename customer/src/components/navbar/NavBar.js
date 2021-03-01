@@ -6,7 +6,7 @@ import {
     Route,
     Link
   } from "react-router-dom";
-import Image from "/home/mjoel4708/test/Exodus/customer/src/components/Hand-i-man.png";
+import Image from "/home/mjoel4708/Exodus/customer/src/components/Hand-i-man.png";
 import Amplify, { Auth } from 'aws-amplify';
 function signOut() {
     Auth.signOut()
@@ -28,7 +28,7 @@ function NavBar() {
                             
                             
                             
-                            <Nav.Link href="#link">Link</Nav.Link>
+                            
                             <NavDropdown title="Quick access" id="basic-nav-dropdown">
                                 <NavDropdown.Item onClick={signOut}>Log Out</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to="/login">My Account</NavDropdown.Item>

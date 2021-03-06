@@ -5,7 +5,7 @@ const serviceSchema = new Schema({
     username: String,
     location: String,
     createdAt: String,
-    request: [
+    requests: [
         {
           description: String,
           username: String,

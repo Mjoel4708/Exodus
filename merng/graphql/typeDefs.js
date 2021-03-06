@@ -5,7 +5,22 @@ module.exports = gql`
         title: String!
         username: String!
         location: String!
-        
+        createdAt: String!
+        requests: [Request]!
+        stars: [Star]!
+        starCount: Int!
+        requestCount: Int! 
+    }
+    type Request{
+       id: ID!
+       createdAt: String!
+       username: String!
+       description: String!
+    }
+    type Star{
+       id: ID!
+       createdAt: String!
+       username: String! 
     }
     type User{
         id: ID!
@@ -24,9 +39,18 @@ module.exports = gql`
     }
     type Query{
         getServices: [Service]
+        getService(serviceId: ID!): Service
     }
     type Mutation{
         register(registerInput: RegisterInput): User!
+        createService(title: String!): Service!
+        deleteService(serviceId: ID!): String!
+        createRequest(serviceId: ID!, description: String!): Service!
+        deleteRequest(serviceId: ID!, requestId: ID!): Service!
+        starService(serviceId: ID!): Service!
+    }
+    type Subscription{
+        newRequest: Request!
     }
 
 `;

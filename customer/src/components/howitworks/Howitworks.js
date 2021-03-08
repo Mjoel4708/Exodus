@@ -4,7 +4,7 @@ function Howitworks() {
     return (
         
         <div>
-            <Container  style={{padding:"20px", textAlign: "center", fontFamily: "Oswald, sans-serif"}}>
+            <Container  style={{padding:"10px", textAlign: "center", fontFamily: "Oswald, sans-serif"}}>
             <Row className="justify-content-center" style={{paddingBottom:"30px"}}>
                 <h1 className="display-4 text-warning" style={{fontFamily: "Oswald, sans-serif"}}>How it works</h1>
             </Row>
@@ -43,8 +43,8 @@ function Howitworks() {
                     </div>
                 </Col>
             </Row>
-            <Row className="justify-content-center" inline style={{paddingTop: "50px"}}>
-                <Button variant="warning" size="lg">Get Started</Button>
+            <Row className="justify-content-center" inline style={{paddingTop: "0px"}}>
+                <Button variant="warning" size="lg">Explore</Button>
             </Row>
         </Container>
             

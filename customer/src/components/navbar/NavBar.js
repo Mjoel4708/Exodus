@@ -28,7 +28,7 @@ function NavBar() {
                             
                             
                             
-                            
+                            <Nav.Link as={Link} to="/services">Services</Nav.Link>
                             <NavDropdown title="Quick access" id="basic-nav-dropdown">
                                 <NavDropdown.Item onClick={signOut}>Log Out</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to="/login">My Account</NavDropdown.Item>
@@ -56,12 +56,15 @@ function NavBar() {
                 </Row>
                 
                 <Row flex className="justify-content-center">
-                    <Form inline style={{paddingTop: "50px", opacity: 0.7}}>
+                    <Form inline style={{paddingTop: "30px", opacity: 0.7}}>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                         <Button variant="warning">Search</Button>       
                      </Form>
                     
                     
+                </Row>
+                <Row className="justify-content-center" style={{paddingTop: "10px"}}>
+                    <Button variant="warning" size="lg" as={Link} to="/services">Explore</Button>
                 </Row>
             </Container>
             

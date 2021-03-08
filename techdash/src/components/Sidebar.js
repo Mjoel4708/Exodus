@@ -23,6 +23,7 @@ function Sidebar() {
                 <span >
                     <span style={{padding: "10px"}}>Tech Dash</span>
                     
+                    
                 </span>
             </SidebarHeader>
             <SidebarContent style={{height: "500px"}}>

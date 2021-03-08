@@ -28,7 +28,7 @@ const App = () => {
     <div>
       {user.attributes.email}
       {loggedIn ? <Form loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> :
-      <Route>
+      <Router>
       
 
       <Switch>
@@ -37,7 +37,7 @@ const App = () => {
         <Route path="/messages" exact component={Messages} />
         
       </Switch>
-    </Route>}
+    </Router>}
       
     </div>
   ): 

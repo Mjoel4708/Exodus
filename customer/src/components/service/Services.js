@@ -7,7 +7,7 @@ import { Grid, Typography, } from "@material-ui/core";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 
-import { Navbar } from "..";
+import { Navbar, Footer } from "..";
 import Cards  from "./Cards";
 function Services() {
     
@@ -21,16 +21,15 @@ function Services() {
     
     
         return(
-            <Grid container display="row" justify="center" alignItems="center" spacing={2}>
+            <Grid container  justify="center" alignItems="center" spacing={2}>
                 <Grid item xs={12} spacing={3}>
                     <Navbar />
                 </Grid>
-                <Grid item>
-                    <Typography variant="h1" component="h2">
+                
+                <Grid item xs={10} spacing={3}>
+                    <Typography variant="h4" component="h5" style={{display: "block", textAlign: "center", fontSize: "2rem", margin: "10px"}}>
                         Services
                     </Typography>
-                </Grid>
-                <Grid item xs={10} spacing={3}>
                 {loading ? (
                     <h4>Loading ...</h4>
                 ) : (
@@ -43,12 +42,16 @@ function Services() {
                     alignItems="flex-start"
                      key={service.id} 
                      spacing={3}
+                     
                      >
                         <Cards service={service}/> 
                     </Grid>
                 ))
                     
                 )}
+                </Grid>
+                <Grid item xs={12} spacing={3}>
+                    <Footer />
                 </Grid>
             </Grid>
         )
@@ -58,7 +61,7 @@ function Services() {
 const FETCH_SERVICES_QUERY = gql`
     {
         getServices{
-            id createdAt username starCount
+            id createdAt username title location description starCount
             stars{
                 id
                 username

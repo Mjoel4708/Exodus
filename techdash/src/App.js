@@ -24,10 +24,12 @@ const App = () => {
   }, []);
   
   const [loggedIn, setLoggedIn ] = React.useState(true);
+  
   return authState === AuthState.SignedIn && user ? (
+    
     <div>
-      {user.attributes.email}
-      {loggedIn ? <Form loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> :
+      
+      {loggedIn ? <Form loggedIn={loggedIn} setLoggedIn={setLoggedIn} userEmail={user.attributes.email} userName={user.username} /> :
       <Router>
       
 

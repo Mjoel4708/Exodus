@@ -10,6 +10,7 @@ module.exports = {
                 return services;
             } catch (error) {
                 console.log(error)
+                throw new Error("Service not found")
             }
         },
         async getService(_, { serviceId }){
@@ -18,7 +19,7 @@ module.exports = {
                 if(service){
                     return service;
                 } else {
-                    throw new Error("Post not found")
+                    throw new Error("Service not found")
                 }
             } catch (error) {
                 throw new Error("Post not found");
@@ -26,14 +27,23 @@ module.exports = {
         }
     },
     Mutation: {
-        async createService(_, { title }, context, info){
-            if(args.title.trim() === ""){
-                throw new Error("post body must not be empty");
-            }
+        async createService(
+            _,
+            { 
+                serviceInput: { username, email, name, location, title, description }
+            },
+            context,
+            info
+        ){
+            
             const newService = new Service({
+                
+                username,
+                email,
+                name,
+                location,
                 title,
-                username: "test",
-                location: "test",
+                description,
                 createdAt: new Date().toISOString()
             });
             const service = await newService.save();
@@ -42,10 +52,10 @@ module.exports = {
         },
         async deleteService(_, { serviceId }, context){
             try {
-                const post = await service.findById(serviceId);
+                const service = await service.findById(serviceId);
                 if ( user.username === service.username) {
-                    await post.delete();
-                    return "Post deleted succesfully";
+                    await service.delete();
+                    return "Service deleted succesfully";
 
                 }
                 else {

@@ -2,9 +2,11 @@ const { gql } = require('apollo-server');
 module.exports = gql`
     type Service{
         id: ID!
-        title: String!
         username: String!
+        email: String!
         location: String!
+        title: String!
+        description: String!
         createdAt: String!
         requests: [Request]!
         stars: [Star]!
@@ -30,6 +32,15 @@ module.exports = gql`
         createdAt: String!
 
     }
+    input ServiceInput{
+        username: String!
+        email: String!
+        name: String!
+        location: String!
+        title: String!
+        description: String!
+
+    }
     input RegisterInput{
         username: String!
         name: String!
@@ -43,7 +54,7 @@ module.exports = gql`
     }
     type Mutation{
         register(registerInput: RegisterInput): User!
-        createService(title: String!): Service!
+        createService(serviceInput: ServiceInput): Service!
         deleteService(serviceId: ID!): String!
         createRequest(serviceId: ID!, description: String!): Service!
         deleteRequest(serviceId: ID!, requestId: ID!): Service!

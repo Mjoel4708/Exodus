@@ -1,9 +1,11 @@
 const { model, Schema } = require("mongoose");
 
 const serviceSchema = new Schema({
-    title: String,
     username: String,
+    email: String,
     location: String,
+    title: String,
+    description: String,
     createdAt: String,
     requests: [
         {

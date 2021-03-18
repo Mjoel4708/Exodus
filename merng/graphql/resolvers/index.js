@@ -11,7 +11,8 @@ module.exports = {
         requestCount: (parent) => parent.requests.length
      },
      Query: {
-         ...serviceResolvers.Query
+         ...serviceResolvers.Query,
+         ...userResolvers.Query
      },
      Mutation: {
          ...userResolvers.Mutation,

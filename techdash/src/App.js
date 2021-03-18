@@ -1,10 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Link, Route, Redirect } from "react-router-dom";
-import { withAuthenticator, AmplifyAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { withAuthenticator, AmplifyAuthenticator } from '@aws-amplify/ui-react'
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
-import Amplify, { Auth } from 'aws-amplify';
+import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
-import { Home,  Messages, Events, Form } from "./components";
+//graph ql depandacies
+
+
+import { Home,  Messages, Events, Form, Charts } from "./components";
 Amplify.configure(awsconfig);
 
 
@@ -14,7 +17,8 @@ const App = () => {
   const [authState, setAuthState] = React.useState();
   const [user, setUser] = React.useState();
   
-
+  
+  
   React.useEffect(() => {
       onAuthUIStateChange((nextAuthState, authData) => {
           setAuthState(nextAuthState);
@@ -32,11 +36,12 @@ const App = () => {
       {loggedIn ? <Form loggedIn={loggedIn} setLoggedIn={setLoggedIn} userEmail={user.attributes.email} userName={user.username} /> :
       <Router>
       
-
+        
       <Switch>
-        <Route path="/" exact component={Home} />
+        <Route path="/" exact component={() => <Home userName={user.username} /> } />
         <Route path="/events" exact component={Events} />
         <Route path="/messages" exact component={Messages} />
+        <Route path="/reports" exact component={Charts} />
         
       </Switch>
     </Router>}
@@ -47,5 +52,6 @@ const App = () => {
     <AmplifyAuthenticator />
   )
 }
+
 
 export default withAuthenticator(App);

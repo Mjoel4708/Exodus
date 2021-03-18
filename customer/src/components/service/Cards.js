@@ -5,6 +5,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import SendIcon from '@material-ui/icons/Send';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import moment from "moment";
+import { Link } from "react-router-dom"
 import { Row, Col } from "react-bootstrap";
 function Cards({service: { id, title, description, location, createdAt, username, starCount, requestCount, stars }}) {
     const [expanded, setExpanded] = React.useState(false);
@@ -14,8 +15,8 @@ function Cards({service: { id, title, description, location, createdAt, username
     };
     const img_url = "https://react.semantic-ui.com/images/avatar/large/molly.png";
     return(
-        <Grid as={Row} item xs={9} style={{alignItems: 'center'}}>
-            <Card as={Col} style={{display: "block", maxWidth: "1245px", flexGrow: 1}}>
+        <Row md={3} style={{alignItems: 'center', margin: "2px", padding: "5px"}}>
+            <Card  style={{display: "block", maxWidth: "1245px", flexGrow: 1}}>
                 <CardHeader
                     avatar={
                         <Avatar aria-label="recipe" style={{backgroundColor: "#F8D210"}}>
@@ -23,8 +24,8 @@ function Cards({service: { id, title, description, location, createdAt, username
                         </Avatar>
                     }
                     action={
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon />
+                        <IconButton >
+                            <Link to={`/services/${id}`} style={{color: "#000000"}}><MoreVertIcon /></Link>
                         </IconButton>
                     }
                     title={username}
@@ -72,7 +73,7 @@ function Cards({service: { id, title, description, location, createdAt, username
                     </CardContent>
                 </Collapse>
             </Card>
-        </Grid>
+        </Row>
     )
 }
 export default Cards

@@ -19,22 +19,28 @@ module.exports = {
                 throw new UserInputError("Error", { errors }); 
             }
             //Make sure user does not
-            const user = await User.findOne({ username });
-            if (user) {
+            const user1 = await User.findOne({ username });
+            if (user1) {
+                
+
                 throw new UserInputError("Username is taken", {
                     errors: {
                         username: "This username is taken"
                     }
                 })
             }
-            const newuser = new User({
+            const newUser = new User({
                 username,
                 name,
                 location,
                 email,
                 createdAt: new Date().toISOString()
             });
-            const res = await newuser.save();
+            
+            const user = await newUser.save();
+
+            return user
+            /*const res = await newuser.save();
             const token = jwt.sign(
                 {
                     id: res.id,
@@ -42,14 +48,28 @@ module.exports = {
                     name: res.name
                 },
                 SECRET_KEY,
-                { expiresIn: "1h" }
+                { expiresIn: "100d" }
             )
             return {
                 ...res._doc,
                 id: res._id,
                 token
                 
-            };
+            };*/
         }
+    },
+    Query: {
+        async getUser(_, { username }) {
+          
+            const user = await User.findOne({ username });
+      
+            if (!user) {
+              errors.general = 'User not found';
+              throw new UserInputError('User not found', { errors });
+            }
+      
+            return user
+          },
     }
+    
 }

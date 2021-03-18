@@ -1,74 +1,61 @@
-import React from 'react';
-import { Col, Card, Container, Row } from "react-bootstrap";
-import Calendar from 'react-calendar';
-import { MdEventAvailable } from "react-icons/md"
-import {  Sidebar } from "../components";
-import 'react-calendar/dist/Calendar.css';
+import React from 'react'
+import { Sidebar } from "./"
+import { Col, Row, Container } from "react-bootstrap";
+import { Paper } from "@material-ui/core";
+import { ViewState } from '@devexpress/dx-react-scheduler';
+import {
+  Scheduler,
+  DayView,
+  WeekView,
+  MonthView,
+  ViewSwitcher,
+  Toolbar,
+  AppointmentForm,
+  AppointmentTooltip,
+  Appointments,
+} from '@devexpress/dx-react-scheduler-material-ui';
+const currentDate = '2021-04-04';
+const schedulerData = [
+  { startDate: '2021-04-04T09:45', endDate: '2021-04-04T11:00', title: 'Request 1' },
+  { startDate: '2021-04-04T12:00', endDate: '2021-04-04T13:30', title: 'Request 2' },
+];
 function Events() {
-    var CLIENT_ID = "1013320439570-nefmco22um2dlr0vi5efqo0hktgvvavp.apps.googleusercontent.com";
-      var API_KEY = "AIzaSyDw_HGhGTEYnIt7K_bSWkGklXzJK-q8KZE";
-      var gapi = window.gapi
-      // Array of API discovery doc URLs for APIs used by the quickstart
-      var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-
-      // Authorization scopes required by the API; multiple scopes can be
-      // included, separated by spaces.
-      var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
-
-      var authorizeButton = document.getElementById('authorize_button');
-      var signoutButton = document.getElementById('signout_button');
+  return (
+    <div>
+      <Row>
+        <Col md={3}>
+          <Sidebar />
+        </Col>
+        <Col style={{padding: "30px", height: "900px", overflowY: "auto"}}>
+          <Paper>
+            <Scheduler
+              data={schedulerData}
+            >
+              <ViewState
+                currentDate={currentDate}
+              />
+              <WeekView
+                startDayHour={9}
+                endDayHour={14}
+              />
+              <DayView />
+              <MonthView />
+              <Appointments />
+              <AppointmentTooltip
+                showOpenButton
+                showDeleteButton
+              />
+              <AppointmentForm />
+              <Toolbar />
+              <ViewSwitcher />
+            </Scheduler>
+          </Paper>
+        </Col>
+      </Row>
       
-      const handleClick = () => {
-        gapi.load('client:auth2', () => {
-          console.log('loaded client')
-    
-          gapi.client.init({
-            apiKey: API_KEY,
-            clientId: CLIENT_ID,
-            discoveryDocs: DISCOVERY_DOCS,
-            scope: SCOPES,
-          })
-    
-          gapi.client.load('calendar', 'v3', () => console.log('bam!'))
-    
-          gapi.auth2.getAuthInstance().signIn()
-          /*
-
-          })*/
-        })
-        
-      }
-
-      /**
-       *  Called when the signed in status changes, to update the UI
-       *  appropriately. After a sign-in, the API is called.
-       */
-      
-
-      /**
-       *  Sign in the user upon button click.
-       */
-      
-    return (
-        <div style={{width: "auto", size: "auto"}}>
-            <Container fluid style={{padding: "0.4px", margin: "0px"}}>
-            <Row>
-                <Col lg={3}>
-                    <Sidebar />
-                </Col>
-                <Col lg={8}>
-                    <Card className="text-center  shadow-lg">
-                        <Calendar />
-                        <button onClick={handleClick}> <MdEventAvailable /> Add Event</button>
-                    </Card>
-                </Col>
-
-            </Row>
-        </Container>
-            
-            
-        </div>
-    )
+    </div>
+  )
 }
 
 export default Events
+

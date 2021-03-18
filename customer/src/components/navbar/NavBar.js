@@ -31,7 +31,7 @@ function NavBar() {
                             <Nav.Link as={Link} to="/services">Services</Nav.Link>
                             <NavDropdown title="Quick access" id="basic-nav-dropdown">
                                 <NavDropdown.Item onClick={signOut}>Log Out</NavDropdown.Item>
-                                <NavDropdown.Item as={Link} to="/login">My Account</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/profile">My Account</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.3">Help</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action/3.4">Contact us</NavDropdown.Item>

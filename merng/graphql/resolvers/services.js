@@ -1,7 +1,7 @@
 const { UserInputError } = require("apollo-server");
 const { argsToArgsConfig } = require("graphql/type/definition");
 const Service = require("../../models/Service");
-const username = "TODO get username";
+
 module.exports = {
     Query: {
         async getServices () {
@@ -22,7 +22,7 @@ module.exports = {
                     throw new Error("Service not found")
                 }
             } catch (error) {
-                throw new Error("Post not found");
+                throw new Error("service not found");
             }
         }
     },
@@ -65,25 +65,25 @@ module.exports = {
                 throw new Error(error);
             }
         },
-        async starService(_, { serviceId }, context){
+        async starService  (_, { serviceId, username }, context){
             const service = await Service.findById(serviceId);
-            if(service){
-              if(service.stars.find(star => star.username === username)){
-                //service already liked. Unlike 
-                service.stars = service.stars.filter(star => star.username !== username);
-                
+            if (service) {
+                if (service.stars.find((star) => star.username === username)) {
+                // service already stars, unstar it
+                service.stars = service.stars.filter((star) => star.username !== username);
+                } else {
+                // Not stard, star service
+                service.stars.push({
+                    username,
+                    createdAt: new Date().toISOString()
+                });
+                }
 
-              }else{
-                  //not stared
-                  service.stars.push({
-                      username,
-                      createdAt: new Date().toISOString()
-                  })
-              }
-              await service.save();
-              return service;
-            }else throw new UserInputError("Service not found");
+                await service.save();
+                return service;
+            } else throw new UserInputError('service not found');
         }
+        
     }
     
     

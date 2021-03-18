@@ -1,6 +1,6 @@
 import React from 'react';
 import { ProSidebar, Menu, MenuItem, SubMenu,SidebarHeader, SidebarFooter, SidebarContent } from 'react-pro-sidebar';
-import { FaTachometerAlt, FaComments, FaList, FaCalendarAlt, FaRegLaughWink, FaHeart, FaPowerOff } from 'react-icons/fa'
+import { FaTachometerAlt, FaComments, FaList, FaCalendarAlt, FaRegLaughWink, FaHeart, FaPowerOff, FaChartBar } from 'react-icons/fa'
 import {
     BrowserRouter as Router,
     Switch,
@@ -37,11 +37,12 @@ function Sidebar() {
                 </MenuItem>
                 <MenuItem icon={<FaComments />}> {"Chats"}<Link to="/messages" /></MenuItem>
                 <MenuItem as={Link} to="/events" icon={<FaCalendarAlt />}> {"Calendar"}<Link to="/events" /></MenuItem>
+                <MenuItem as={Link} to="/reports" icon={<FaChartBar />}> {"Reports"}<Link to="/reports" /></MenuItem>
                 </Menu>
                 <Menu iconShape="circle">
                 <SubMenu
                     
-                    title={"With suffix"}
+                    title={"Extras"}
                     icon={<FaRegLaughWink />}
                 >
                     <MenuItem>{"Submenu"} 1</MenuItem>
@@ -50,14 +51,14 @@ function Sidebar() {
                 </SubMenu>
                 <SubMenu
                     
-                    title={"with prefix"}
+                    title={"Extras"}
                     icon={<FaHeart />}
                 >
                     <MenuItem>{"Submenu"} 1</MenuItem>
                     <MenuItem>{"Submenu"} 2</MenuItem>
                     <MenuItem>{"Submenu"} 3</MenuItem>
                 </SubMenu>
-                <SubMenu title={"Submenu title"} icon={<FaList />}>
+                <SubMenu title={"Extras"} icon={<FaList />}>
                     <MenuItem>{"Submenu"} 1 </MenuItem>
                     <MenuItem>{"Submenu"} 2 </MenuItem>
                     <SubMenu title={`${"Submenu"} 3`}>

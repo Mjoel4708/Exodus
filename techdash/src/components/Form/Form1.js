@@ -1,8 +1,10 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-
+//graph ql dependacies
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
+
+import { useQuery } from "@apollo/react-hooks";
 
 import { Home } from "../../components";
 import { Form, Button, Col, Row, Spinner } from "react-bootstrap";
@@ -11,7 +13,7 @@ import { Form, Button, Col, Row, Spinner } from "react-bootstrap";
 import { Paper } from '@material-ui/core';
 function Form1({ loggedIn, setLoggedIn, userName, userEmail }) {
     const { handleSubmit, register, error } = useForm();
-    
+   
     const [ userVal, setUserVal ] = React.useState({});
     const nameVal = userVal.firstname;
     const locationVal = userVal.address;
@@ -69,8 +71,19 @@ function Form1({ loggedIn, setLoggedIn, userName, userEmail }) {
         }
     })
 
-    
-    
+    const { data } = useQuery(FETCH_USER_SERVICES, {
+        variables:{
+          username: userName
+        }
+      });
+      if(data){
+        const userService = data.getUser;
+        console.log(userService);
+      }
+      if(data){
+          setLoggedIn(false);
+          console.log(data)
+      }
     return loggedIn ? (
         <Row style={{backgroundImage: "url(https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8d2hpdGV8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60)", backgroundSize: "cover"}}>
             <Col>
@@ -235,6 +248,19 @@ const CREATE_USER_PROFILE = gql`
     }
 
 
+`
+const FETCH_USER_SERVICES = gql`
+    query getUser(
+      $username: String!
+    )
+    {
+        getUser(
+          username: $username
+        ){
+            id createdAt username name location 
+            
+        }
+    }
 `
 
 export default Form1

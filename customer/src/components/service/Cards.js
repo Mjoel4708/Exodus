@@ -7,6 +7,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import moment from "moment";
 import { Link } from "react-router-dom"
 import { Row, Col } from "react-bootstrap";
+import Starbutton from "./Starbutton";
 function Cards({service: { id, title, description, location, createdAt, username, starCount, requestCount, stars }}) {
     const [expanded, setExpanded] = React.useState(false);
 
@@ -15,7 +16,7 @@ function Cards({service: { id, title, description, location, createdAt, username
     };
     const img_url = "https://react.semantic-ui.com/images/avatar/large/molly.png";
     return(
-        <Row md={3} style={{alignItems: 'center', margin: "2px", padding: "5px"}}>
+        <Row  style={{alignItems: 'center', margin: "2px", padding: "5px"}}>
             <Card  style={{display: "block", maxWidth: "1245px", flexGrow: 1}}>
                 <CardHeader
                     avatar={
@@ -38,11 +39,7 @@ function Cards({service: { id, title, description, location, createdAt, username
                     </Typography>
                 </CardContent>
                     <CardActions disableSpacing>
-                        <IconButton aria-label="add to likes">
-                            <Typography>{starCount}</Typography>
-                            <FavoriteIcon fontSize="small" /> 
-                            
-                        </IconButton>
+                        <Starbutton id={id} username={username} stars={stars} starCount={starCount} />
                         <IconButton aria-label="share">
                             <SendIcon />
                         </IconButton>

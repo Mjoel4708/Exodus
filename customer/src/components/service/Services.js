@@ -29,7 +29,7 @@ function Services() {
                     </Typography>
                 </Grid>
                 
-                <Col style={{padding: "10px"}}>
+                <Row style={{padding: "10px"}}>
                     
                 {loading ? (
                     <h4>Loading ...</h4>
@@ -37,10 +37,7 @@ function Services() {
                 services &&
                 services.map((service) => (
                     <Col
-                    fluid
-                    direction="row"
-                    justify="center"
-                    alignItems="flex-start"
+                    
                      key={service.id} 
                      md={4}
                      
@@ -50,7 +47,7 @@ function Services() {
                 ))
                     
                 )}
-                </Col>
+                </Row>
                 
                 <Grid item xs={12} spacing={3}>
                     <Footer />

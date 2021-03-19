@@ -3,6 +3,7 @@ import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 import { Grid, Paper, Typography, ButtonBase, Container } from "@material-ui/core";
 import { Navbar, Footer } from "../";
+import Starbutton from "./Starbutton";
 import moment from "moment";
 function SingleService(props) {
     const serviceId = props.match.params.serviceId;
@@ -48,7 +49,7 @@ function SingleService(props) {
                         </Grid>
                         <Grid item>
                             <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                            Remove
+                                <Starbutton id={id} username={username} stars={stars} starCount={starCount} />
                             </Typography>
                         </Grid>
                         </Grid>

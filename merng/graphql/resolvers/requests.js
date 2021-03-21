@@ -15,7 +15,7 @@ module.exports = {
             if(service){
                 service.requests.unshift({
                     description,
-                    //TODO username
+                    username: "test",
                     createdAt: new Date().toISOString()
                 })
                 await service.save();

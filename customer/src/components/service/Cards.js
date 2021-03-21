@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Card, CardHeader, Fab, CardContent, Avatar, IconButton, Typography, CardActions, Collapse } from "@material-ui/core";
+import { Grid, Card, CardHeader, Modal, CardContent, Avatar, IconButton, Typography, CardActions, Collapse } from "@material-ui/core";
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import SendIcon from '@material-ui/icons/Send';
@@ -8,12 +8,25 @@ import moment from "moment";
 import { Link } from "react-router-dom"
 import { Row, Col } from "react-bootstrap";
 import Starbutton from "./Starbutton";
+import RequestForm from "./RequestForm";
 function Cards({service: { id, title, description, location, createdAt, username, starCount, requestCount, stars }}) {
     const [expanded, setExpanded] = React.useState(false);
-
+    const [open, setOpen] = React.useState(false);
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+    const handleOnclick = () => {
+        setOpen(true)
+    };
+    const handleOnclose = () => {
+        setOpen(false)
+    };
+    const body = (
+        <Grid container direction="column" justify="center" alignItems="center" xs={12} style={{ padding: 90 }}>
+            <RequestForm />
+        </Grid>
+        
+      );
     const img_url = "https://react.semantic-ui.com/images/avatar/large/molly.png";
     return(
         <Row  style={{alignItems: 'center', margin: "2px", padding: "5px"}}>
@@ -41,8 +54,17 @@ function Cards({service: { id, title, description, location, createdAt, username
                     <CardActions disableSpacing>
                         <Starbutton id={id} username={username} stars={stars} starCount={starCount} />
                         <IconButton aria-label="share">
-                            <SendIcon />
+                            <SendIcon onClick={handleOnclick} />
                         </IconButton>
+                        <Modal
+                            open={open}
+                            onClose={handleOnclose}
+                            aria-labelledby="simple-modal-title"
+                            aria-describedby="simple-modal-description"
+                            
+                        >
+                            {body}
+                        </Modal>
                         <IconButton
                             
                             onClick={handleExpandClick}

@@ -1,16 +1,18 @@
 import React from "react";
 //UI 
-import { Grid, Typography, } from "@material-ui/core";
+import { Grid, Typography, IconButton } from "@material-ui/core";
+
 import { Row, Col } from "react-bootstrap";
 //server
 
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import RequestForm from "./RequestForm";
-import { Navbar, Footer } from "..";
+//react router
+
+import { Navbar, Footer, GeoMap } from "..";
 import Cards  from "./Cards";
-function Services() {
-    
+function Services({setUserServices, userServices}) {
+   
     
     const { loading, error, data={} } = useQuery(FETCH_SERVICES_QUERY);
     
@@ -19,7 +21,10 @@ function Services() {
     else{ 
         
         const services = data.getServices
-    
+        const locationString = "locations"; 
+
+        
+        
         return(
             <Grid container  justify="center" alignItems="center" spacing={1}>
                 <Grid item xs={12} spacing={3}>
@@ -27,6 +32,7 @@ function Services() {
                     <Typography variant="h4" component="h5" style={{display: "block", textAlign: "center", fontSize: "2rem", margin: "10px"}}>
                         Services
                     </Typography>
+                    
                 </Grid>
                 
                 <Row style={{padding: "10px"}}>
@@ -60,7 +66,7 @@ function Services() {
 const FETCH_SERVICES_QUERY = gql`
     {
         getServices{
-            id createdAt username title location description starCount
+            id createdAt username title description starCount
             stars{
                 id
                 username

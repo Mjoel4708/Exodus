@@ -2,7 +2,7 @@ module.exports.validateRegisterInput = (
     username,
     name,
     email,
-    location
+    latitude
 
 ) => {
     const errors = {};
@@ -22,9 +22,7 @@ module.exports.validateRegisterInput = (
 
         }
     }
-    if(location.trim() === ""){
-        errors.location = "Location cannot be empty"
-    }
+    
     return {
         errors,
         valid: Object.keys(errors).length < 1

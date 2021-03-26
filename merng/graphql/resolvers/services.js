@@ -30,7 +30,7 @@ module.exports = {
         async createService(
             _,
             { 
-                serviceInput: { username, email, name, location, title, description }
+                serviceInput: { username, email, name, latitude, longitude, title, description, rates }
             },
             context,
             info
@@ -41,9 +41,11 @@ module.exports = {
                 username,
                 email,
                 name,
-                location,
+                latitude,
+                longitude,
                 title,
                 description,
+                rates,
                 createdAt: new Date().toISOString()
             });
             const service = await newService.save();

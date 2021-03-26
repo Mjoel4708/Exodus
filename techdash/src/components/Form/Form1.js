@@ -5,37 +5,51 @@ import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 
 import { useQuery } from "@apollo/react-hooks";
-
+import { usePosition } from "use-position";
 import { Home } from "../../components";
 import { Form, Button, Col, Row, Spinner } from "react-bootstrap";
 
 
 import { Paper } from '@material-ui/core';
 function Form1({ loggedIn, setLoggedIn, userName, userEmail }) {
-    const { handleSubmit, register, error } = useForm();
+    const {
+        latitude,
+        longitude,
+        speed,
+        timestamp,
+        accuracy,
+        error,
+      } = usePosition();
+      //latitude is undefined
+    const { handleSubmit, register } = useForm();
    
     const [ userVal, setUserVal ] = React.useState({});
     const nameVal = userVal.firstname;
-    const locationVal = userVal.address;
+    //nameVal may have some problems...
     const titleVal = userVal.service;
-    const descriptionVal = userVal.firstname;
-    const onSubmit = async (data) => {
+    const descriptionVal = userVal.decription;
+    const ratesVal = userVal.rates;
+    const latitudeVal = latitude;
+    const longitudeVal = longitude;
+    console.log(longitudeVal)
+    const onSubmit = data => {
         
         setUserVal(data);
         try {
             console.log(data);
-            setLoggedIn(false);
+            console.log(userVal);
+            
             
             addService()
             addUser()
-            console.log(data.address)
+            
             
             
             
             
             
         } catch (error) {
-            console.log(error);
+            console.log(error)
             console.log(error.graphQLErrors)
         }
         
@@ -44,6 +58,7 @@ function Form1({ loggedIn, setLoggedIn, userName, userEmail }) {
     const [ addService, { loading }] = useMutation(REGISTER_SERVICE, {
         update(proxy,results){
             console.log(results)
+            console.log(proxy)
         },
         
         
@@ -51,11 +66,14 @@ function Form1({ loggedIn, setLoggedIn, userName, userEmail }) {
             username: userName,
             email: userEmail,
             name: nameVal,
-            location: locationVal,
+            latitude: latitudeVal,
+            longitude: longitudeVal,
             title: titleVal,
+            rates: ratesVal,
             description: descriptionVal
         }
     })
+    
     const [ addUser ] = useMutation(CREATE_USER_PROFILE, {
         update(proxy,results){
             console.log(results)
@@ -66,7 +84,8 @@ function Form1({ loggedIn, setLoggedIn, userName, userEmail }) {
             username: userName,
             email: userEmail,
             name: nameVal,
-            location: locationVal,
+            latitude: latitudeVal,
+            longitude: longitudeVal,
             
         }
     })
@@ -76,6 +95,7 @@ function Form1({ loggedIn, setLoggedIn, userName, userEmail }) {
           username: userName
         }
       });
+      
       if(data){
         const userService = data.getUser;
         console.log(userService);
@@ -92,74 +112,33 @@ function Form1({ loggedIn, setLoggedIn, userName, userEmail }) {
             
             <Col md={8} className="justify-content-center">
                 <h6>Almost there...</h6>
-                <Paper elevation={3} style={{padding: "15px"}}>
+                <Paper elevation={3} style={{padding: "35px"}}>
                     <Form onSubmit={handleSubmit(onSubmit)}>
                     <h6>Register a service</h6>
                     <br />
-                    <Form.Row>
-                        <Form.Group as={Col} controlId="formGridEmail">
+                    
+                        <Form.Group controlId="formGridEmail">
                         <Form.Label>First Name</Form.Label>
                         <Form.Control type="text" name="firstname" placeholder="Joe" ref={register({ required: true })} />
                         </Form.Group>
 
-                        <Form.Group as={Col} controlId="formGridPassword">
+                        <Form.Group controlId="formGridPassword">
                         <Form.Label>Last Name</Form.Label>
                         <Form.Control type="text" name="lastname" placeholder="Doe" ref={register({ required: true })} />
                         </Form.Group>
-                    </Form.Row>
                     
                     
-                    <Form.Row>
-                        <Form.Group as={Col} controlId="formGridCity">
-                        <Form.Label>County</Form.Label>
-                        <Form.Control type="text" name="county" ref={register({ required: true })}  />
-                        </Form.Group>
-                        
-                        <Form.Group as={Col} controlId="formGridState">
-                        <Form.Label>City / Town</Form.Label>
-                        <Form.Control as="select" name="city" defaultValue="Choose..." ref={register({ required: true })} >
-                            <option>Choose...</option>
-                            <option>...</option>
-                        </Form.Control>
-                        </Form.Group>
-
-                        <Form.Group as={Col} controlId="formGridZip">
-                        <Form.Label>District</Form.Label>
-                        <Form.Control type="text" name="district" />
-                        </Form.Group>
-                    </Form.Row>
-                    <Form.Group controlId="formGridAddress2">
-                        <Form.Label>Address </Form.Label>
-                        <Form.Control placeholder="Apartment, studio, or floor" name="address" ref={register({ required: true })}  />
-                    </Form.Group>
-                    <Form.Group controlId="formGridAddress1">
-                        <Form.Label>Date of Birth </Form.Label>
-                        <Form.Control type= "date" name="dob"  ref={register({ required: true })}/>
-                    </Form.Group>
-                    <Form.Row>
-                        
-                        
-                        
-
-                        <Form.Group as={Col} controlId="formGridState">
-                        <Form.Label>Gender</Form.Label>
-                        <Form.Control as="select" defaultValue="Female" name="gender" ref={register({ required: true })} >
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>Other</option>
-                            <option>I rather not say</option>
-                        </Form.Control>
-                        </Form.Group>
-
-                        
-                    </Form.Row>
-                    <Form.Row>
-                        <Form.Group as={Col} controlId="serviceName">
+                    
+                    
+                    
+                    
+                    
+                        <Form.Group  controlId="serviceName">
                         <Form.Label>Service Name</Form.Label>
                         <Form.Control type="text" name="service" ref={register({ required: true })}  />
                         </Form.Group>
                         
-                        <Form.Group as={Col} controlId="formGridCategory">
+                        <Form.Group  controlId="formGridCategory">
                         <Form.Label>Service Category</Form.Label>
                         <Form.Control as="select" name="cat" defaultValue="Choose..." ref={register({ required: true })} >
                             <option>Constuction</option>
@@ -170,11 +149,11 @@ function Form1({ loggedIn, setLoggedIn, userName, userEmail }) {
                         </Form.Control>
                         </Form.Group>
 
-                        <Form.Group as={Col} controlId="formGridZip">
+                        <Form.Group  controlId="formGridZip">
                         <Form.Label>Your hourly rate</Form.Label>
                         <Form.Control type="text" name="rates" ref={register({ required: true })} />
                         </Form.Group>
-                    </Form.Row>
+                    
 
                     <Form.Group controlId="formGridDescription">
                         <Form.Label>Description </Form.Label>
@@ -209,8 +188,10 @@ const REGISTER_SERVICE = gql`
         $username: String!
         $email: String!
         $name: String!
-        $location: String!
+        $latitude: Float!
+        $longitude: Float!
         $title: String!
+        $rates: String!
         $description: String!
 
     ) {
@@ -219,8 +200,10 @@ const REGISTER_SERVICE = gql`
                 username: $username
                 email: $email
                 name: $name
-                location: $location
+                latitude: $latitude
+                longitude: $longitude
                 title: $title
+                rates: $rates
                 description: $description
             }
         ){
@@ -233,14 +216,16 @@ const CREATE_USER_PROFILE = gql`
         $username: String!
         $email: String!
         $name: String!
-        $location: String!
+        $latitude: Float!
+        $longitude: Float!
     ){
         register(
             registerInput: {
                 username: $username
                 email: $email
                 name: $name
-                location: $location
+                latitude: $latitude
+                longitude: $longitude
             }
         ){
             id
@@ -257,7 +242,7 @@ const FETCH_USER_SERVICES = gql`
         getUser(
           username: $username
         ){
-            id createdAt username name location 
+            id createdAt username name 
             
         }
     }

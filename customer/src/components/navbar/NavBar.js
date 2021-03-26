@@ -64,7 +64,7 @@ function NavBar() {
                     
                 </Row>
                 <Row className="justify-content-center" style={{paddingTop: "10px"}}>
-                    <Button variant="warning" size="lg" as={Link} to="/services">Explore</Button>
+                    <Button variant="warning" size="lg" as={Link} to="/map">Explore</Button>
                 </Row>
             </Container>
             

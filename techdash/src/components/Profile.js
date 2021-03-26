@@ -40,7 +40,7 @@ function Profile({ userName }) {
                         <h5 style={{color: "#b08f26", fontFamily: "Roboto Slab", fontWeight: "800", paddingTop: "20px", paddingBottom: "15px"}}>{userService.name}</h5>
                         
                         <h6><FaHardHat /> Interior Designer</h6>
-                        <h6><FaMapMarkedAlt /> {userService.location}</h6>
+                        
                     </Card.Header>
                         <Card.Body>
                             <Card.Title>Contact</Card.Title>
@@ -79,7 +79,7 @@ const FETCH_USER_SERVICES = gql`
         getUser(
           username: $username
         ){
-            id createdAt username name location 
+            id createdAt username name 
             
         }
     }

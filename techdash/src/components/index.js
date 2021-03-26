@@ -4,4 +4,5 @@ export { default as Messages } from './Messages';
 export { default as Events } from './Events';
 export { default as Charts } from './Charts';
 export { default as Home } from './Home';
+export { default as GeoMap } from './map/GeoMap';
 export { default as Form } from './Form/Form1';

@@ -35,42 +35,14 @@ function Sidebar() {
                 ><Link to="/"></Link>
                     {"Dashbord"}
                 </MenuItem>
-                <MenuItem icon={<FaComments />}> {"Chats"}<Link to="/messages" /></MenuItem>
+                <MenuItem icon={<FaComments />}> {"Requests"}<Link to="/messages" /></MenuItem>
                 <MenuItem as={Link} to="/events" icon={<FaCalendarAlt />}> {"Calendar"}<Link to="/events" /></MenuItem>
                 <MenuItem as={Link} to="/reports" icon={<FaChartBar />}> {"Reports"}<Link to="/reports" /></MenuItem>
                 </Menu>
                 <Menu iconShape="circle">
-                <SubMenu
-                    
-                    title={"Extras"}
-                    icon={<FaRegLaughWink />}
-                >
-                    <MenuItem>{"Submenu"} 1</MenuItem>
-                    <MenuItem>{"Submenu"} 2</MenuItem>
-                    <MenuItem>{"Submenu"} 3</MenuItem>
-                </SubMenu>
-                <SubMenu
-                    
-                    title={"Extras"}
-                    icon={<FaHeart />}
-                >
-                    <MenuItem>{"Submenu"} 1</MenuItem>
-                    <MenuItem>{"Submenu"} 2</MenuItem>
-                    <MenuItem>{"Submenu"} 3</MenuItem>
-                </SubMenu>
-                <SubMenu title={"Extras"} icon={<FaList />}>
-                    <MenuItem>{"Submenu"} 1 </MenuItem>
-                    <MenuItem>{"Submenu"} 2 </MenuItem>
-                    <SubMenu title={`${"Submenu"} 3`}>
-                    <MenuItem>{"Submenu"} 3.1 </MenuItem>
-                    <MenuItem>{"Submenu"} 3.2 </MenuItem>
-                    <SubMenu title={`${"Submenu"} 3.3`}>
-                        <MenuItem>{"Submenu"} 3.3.1 </MenuItem>
-                        <MenuItem>{"Submenu"} 3.3.2 </MenuItem>
-                        <MenuItem>{"Submenu"} 3.3.3 </MenuItem>
-                    </SubMenu>
-                    </SubMenu>
-                </SubMenu>
+                
+                
+                
                 </Menu>
             </SidebarContent>
             <SidebarFooter style={{ textAlign: 'center' }}>

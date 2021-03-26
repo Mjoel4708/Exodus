@@ -40,7 +40,7 @@ const App = () => {
       <Switch>
         <Route path="/" exact component={() => <Home userName={user.username} /> } />
         <Route path="/events" exact component={Events} />
-        <Route path="/messages" exact component={Messages} />
+        <Route path="/messages" exact component={() => <Messages userName={user.username}/>} />
         <Route path="/reports" exact component={Charts} />
         
       </Switch>

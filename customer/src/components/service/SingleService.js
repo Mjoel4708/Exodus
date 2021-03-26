@@ -67,7 +67,7 @@ function SingleService(props) {
 const FETCH_SERVICE_QUERY = gql `
     query($serviceId: ID!){
         getService(serviceId: $serviceId){
-            id username email location title description createdAt starCount
+            id username email title description createdAt starCount
             stars{
                 username
             } 

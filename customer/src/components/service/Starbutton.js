@@ -11,7 +11,7 @@ function Starbutton({ username, id, stars, starCount }) {
             username: username
         }
     })
-    console.log(username)
+    
     const [liked, setLiked] = React.useState(false);
     React.useEffect(() => {
         if(stars.find((star) => star.username === username)){

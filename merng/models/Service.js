@@ -3,13 +3,17 @@ const { model, Schema } = require("mongoose");
 const serviceSchema = new Schema({
     username: String,
     email: String,
-    location: String,
+    latitude: parseFloat(String),
+    longitude: parseFloat(String),
     title: String,
     description: String,
+    rates: String,
     createdAt: String,
     requests: [
         {
           description: String,
+          latitude: parseFloat(String),
+          longitude: parseFloat(String),
           username: String,
           createdAt: String
 

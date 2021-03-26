@@ -1,8 +1,14 @@
 const Service = require("../../models/Service");
 const { UserInputError } = require("apollo-server");
+
 module.exports = {
     Mutation: {
-        createRequest: async  (_, { serviceId, description }, context) => {
+        createRequest: async  (_,
+             {
+                 requestInput: {serviceId, username, description, longitude, latitude}
+             },
+              context
+              ) => {
             if(description.trim() === ""){
                 throw new UserInputError("Empty comment", {
                     errors: {
@@ -15,7 +21,9 @@ module.exports = {
             if(service){
                 service.requests.unshift({
                     description,
-                    username: "test",
+                    username,
+                    longitude,
+                    latitude,
                     createdAt: new Date().toISOString()
                 })
                 await service.save();

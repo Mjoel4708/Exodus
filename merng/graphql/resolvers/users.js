@@ -9,12 +9,12 @@ module.exports = {
         async register(
             _,
             { 
-                registerInput: { username, name, location, email }
+                registerInput: { username, name, latitude, longitude, email }
             },
             context,
             info){
             //validate user data
-            const { valid, errors } = validateRegisterInput(username, name, email, location);
+            const { valid, errors } = validateRegisterInput(username, name, email, latitude);
             if(!valid){
                 throw new UserInputError("Error", { errors }); 
             }
@@ -32,7 +32,8 @@ module.exports = {
             const newUser = new User({
                 username,
                 name,
-                location,
+                latitude,
+                longitude,
                 email,
                 createdAt: new Date().toISOString()
             });

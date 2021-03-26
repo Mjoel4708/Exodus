@@ -9,7 +9,7 @@ import { Link } from "react-router-dom"
 import { Row, Col } from "react-bootstrap";
 import Starbutton from "./Starbutton";
 import RequestForm from "./RequestForm";
-function Cards({service: { id, title, description, location, createdAt, username, starCount, requestCount, stars }}) {
+function Cards({service: { id, title, description, createdAt, username, starCount, requestCount, stars }}) {
     const [expanded, setExpanded] = React.useState(false);
     const [open, setOpen] = React.useState(false);
     const handleExpandClick = () => {
@@ -23,14 +23,14 @@ function Cards({service: { id, title, description, location, createdAt, username
     };
     const body = (
         <Grid container direction="column" justify="center" alignItems="center" xs={12} style={{ padding: 90 }}>
-            <RequestForm />
+            <RequestForm id={id} username={username} setOpen={setOpen} />
         </Grid>
         
       );
     const img_url = "https://react.semantic-ui.com/images/avatar/large/molly.png";
     return(
         <Row  style={{alignItems: 'center', margin: "2px", padding: "5px"}}>
-            <Card  style={{display: "block", maxWidth: "1245px", flexGrow: 1}}>
+            <Card  style={{display: "block", maxWidth: "1245px", flexGrow: 1, width: '38rem'}}>
                 <CardHeader
                     avatar={
                         <Avatar aria-label="recipe" style={{backgroundColor: "#F8D210"}}>
@@ -78,7 +78,7 @@ function Cards({service: { id, title, description, location, createdAt, username
                     <CardContent>
                         <Typography paragraph>Description:</Typography>
                         <Typography paragraph>
-                                {location}
+                                
                         </Typography>
                         <Typography paragraph>
                                 {description}

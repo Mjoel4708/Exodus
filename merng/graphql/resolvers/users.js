@@ -14,7 +14,7 @@ module.exports = {
             context,
             info){
             //validate user data
-            const { valid, errors } = validateRegisterInput(username, name, email, latitude);
+            const { valid, errors } = validateRegisterInput(username, name, email, latitude, latitude);
             if(!valid){
                 throw new UserInputError("Error", { errors }); 
             }

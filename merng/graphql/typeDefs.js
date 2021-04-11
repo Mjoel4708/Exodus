@@ -3,13 +3,16 @@ module.exports = gql`
     type Service{
         id: ID!
         username: String!
+        name: String!
         email: String!
         latitude: Float!
         longitude: Float!
+        category: String!
         title: String!
         description: String!
         createdAt: String!
-        rates: String!
+        rates: Int!
+        ready: Boolean!
         requests: [Request]!
         stars: [Star]!
         starCount: Int!
@@ -44,8 +47,9 @@ module.exports = gql`
         name: String!
         latitude: Float!
         longitude: Float!
+        category: String!
         title: String!
-        rates: String!
+        rates: Int!
         description: String!
 
     }
@@ -76,6 +80,7 @@ module.exports = gql`
         createService(serviceInput: ServiceInput): Service!
         deleteService(serviceId: ID!): String!
         createRequest(requestInput: RequestInput): Service!
+        updateService(serviceId: ID!, longitude: Float, latitude: Float, ready: Boolean): Service!
         deleteRequest(serviceId: ID!, requestId: ID!): Service!
         starService(serviceId: ID!, username: String!): Service!
     }

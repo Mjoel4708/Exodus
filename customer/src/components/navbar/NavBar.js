@@ -55,15 +55,8 @@ function NavBar() {
                     <h1 style={{color: "#FFFFFF"}} variant="dark">ℍ𝕒𝕟𝕕-i-𝕞𝕒𝕟</h1>
                 </Row>
                 
-                <Row flex className="justify-content-center">
-                    <Form inline style={{paddingTop: "30px", opacity: 0.7}}>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="warning">Search</Button>       
-                     </Form>
-                    
-                    
-                </Row>
-                <Row className="justify-content-center" style={{paddingTop: "10px"}}>
+                
+                <Row className="justify-content-center" style={{paddingTop: "40px"}}>
                     <Button variant="warning" size="lg" as={Link} to="/map">Explore</Button>
                 </Row>
             </Container>

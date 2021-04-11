@@ -6,8 +6,10 @@ import gql from "graphql-tag";
 
 import { useQuery } from "@apollo/react-hooks";
 import { usePosition } from "use-position";
+import { Redirect } from "react-router-dom";
+
 import { Home } from "../../components";
-import { Form, Button, Col, Row, Spinner } from "react-bootstrap";
+import { Form, Button, Col, Row } from "react-bootstrap";
 
 
 import { Paper } from '@material-ui/core';
@@ -27,8 +29,9 @@ function Form1({ loggedIn, setLoggedIn, userName, userEmail }) {
     const nameVal = userVal.firstname;
     //nameVal may have some problems...
     const titleVal = userVal.service;
+    const catVal = userVal.cat;
     const descriptionVal = userVal.decription;
-    const ratesVal = userVal.rates;
+    const ratesVal = parseInt(userVal.rates);
     const latitudeVal = latitude;
     const longitudeVal = longitude;
     console.log(longitudeVal)
@@ -68,6 +71,7 @@ function Form1({ loggedIn, setLoggedIn, userName, userEmail }) {
             name: nameVal,
             latitude: latitudeVal,
             longitude: longitudeVal,
+            category: catVal,
             title: titleVal,
             rates: ratesVal,
             description: descriptionVal
@@ -118,13 +122,23 @@ function Form1({ loggedIn, setLoggedIn, userName, userEmail }) {
                     <br />
                     
                         <Form.Group controlId="formGridEmail">
-                        <Form.Label>First Name</Form.Label>
-                        <Form.Control type="text" name="firstname" placeholder="Joe" ref={register({ required: true })} />
+                            <Form.Label>First Name</Form.Label>
+                            <Form.Control 
+                                type="text" 
+                                name="firstname" 
+                                placeholder="Joe" 
+                                ref={register({ required: true })} 
+                            />
                         </Form.Group>
 
                         <Form.Group controlId="formGridPassword">
-                        <Form.Label>Last Name</Form.Label>
-                        <Form.Control type="text" name="lastname" placeholder="Doe" ref={register({ required: true })} />
+                            <Form.Label>Last Name</Form.Label>
+                            <Form.Control 
+                                type="text" 
+                                name="lastname" 
+                                placeholder="Doe" 
+                                ref={register({ required: true })} 
+                            />
                         </Form.Group>
                     
                     
@@ -134,8 +148,8 @@ function Form1({ loggedIn, setLoggedIn, userName, userEmail }) {
                     
                     
                         <Form.Group  controlId="serviceName">
-                        <Form.Label>Service Name</Form.Label>
-                        <Form.Control type="text" name="service" ref={register({ required: true })}  />
+                            <Form.Label>Service Name</Form.Label>
+                            <Form.Control type="text" name="service" ref={register({ required: true })}  />
                         </Form.Group>
                         
                         <Form.Group  controlId="formGridCategory">
@@ -145,13 +159,17 @@ function Form1({ loggedIn, setLoggedIn, userName, userEmail }) {
                             <option>Plumber</option>
                             <option>Electritian</option>
                             <option>Computer repair</option>
-                            <option>Other</option>
+                            <option>Landscaping</option>
+                            <option>Wood work</option>
+                            <option>Gardening</option>
+                            <option>Mechanic</option>
+                            <option>Welding</option>
                         </Form.Control>
                         </Form.Group>
 
                         <Form.Group  controlId="formGridZip">
                         <Form.Label>Your hourly rate</Form.Label>
-                        <Form.Control type="text" name="rates" ref={register({ required: true })} />
+                        <Form.Control type="number" name="rates" ref={register({ required: true })} />
                         </Form.Group>
                     
 
@@ -179,7 +197,7 @@ function Form1({ loggedIn, setLoggedIn, userName, userEmail }) {
         </Row>    
     ):
     (
-        <Home userName={userName} />
+        <Redirect push to="/" />
     )
 }
 const REGISTER_SERVICE = gql`
@@ -190,8 +208,9 @@ const REGISTER_SERVICE = gql`
         $name: String!
         $latitude: Float!
         $longitude: Float!
+        $category: String!
         $title: String!
-        $rates: String!
+        $rates: Int!
         $description: String!
 
     ) {
@@ -202,6 +221,7 @@ const REGISTER_SERVICE = gql`
                 name: $name
                 latitude: $latitude
                 longitude: $longitude
+                category: $category
                 title: $title
                 rates: $rates
                 description: $description

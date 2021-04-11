@@ -2,13 +2,16 @@ const { model, Schema } = require("mongoose");
 
 const serviceSchema = new Schema({
     username: String,
+    name: String,
     email: String,
     latitude: parseFloat(String),
     longitude: parseFloat(String),
+    category: String,
     title: String,
     description: String,
-    rates: String,
+    rates:parseInt(String),
     createdAt: String,
+    ready: Boolean,
     requests: [
         {
           description: String,

@@ -71,6 +71,7 @@ module.exports = gql`
     }
     type Query{
         getServices: [Service]
+        
         getService(serviceId: ID!): Service
         getUser(username: String!): User
     }

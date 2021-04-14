@@ -23,9 +23,9 @@ const App = () => {
             <Switch>
               <Route path="/home" exact component={Home} />
               <Route path="/home/:title" exact component={SingleCategory} />
-              <Route path="/services" exact component={Services} />
+              <Route path="/services" exact component={() => <Services user={user}/>} />
               <Route path="/services/:serviceId" exact component={SingleService} />
-              <Route path="/profile" component={Profile} />
+              <Route path="/profile" component={() => <Profile user={user}/>} />
               <Route path="/map" exact component={GeoMap} />
               <Route path="*" component={Error} />
             </Switch>

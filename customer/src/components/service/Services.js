@@ -11,7 +11,7 @@ import gql from "graphql-tag";
 
 import { Navbar, Footer, GeoMap } from "..";
 import Cards  from "./Cards";
-function Services({setUserServices, userServices}) {
+function Services({setUserServices, userServices, user}) {
    
     
     const { loading, error, data={} } = useQuery(FETCH_SERVICES_QUERY);
@@ -48,7 +48,7 @@ function Services({setUserServices, userServices}) {
                      md={4}
                      
                      >
-                        <Cards service={service}/> 
+                        <Cards service={service} user={user}/> 
                     </Col>
                 ))
                     
@@ -66,7 +66,7 @@ function Services({setUserServices, userServices}) {
 const FETCH_SERVICES_QUERY = gql`
     {
         getServices{
-            id createdAt username title description starCount
+            id name createdAt username title description rates starCount
             stars{
                 id
                 username

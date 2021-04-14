@@ -17,8 +17,8 @@ function SingleCategory(props) {
         return (
             <div>
                 <Navbar />
-                <Grid container>
-                    <Grid item>
+                <Grid container spacing={3} justify="center" alignItems="center">
+                    <Grid item style={{alignItems:"center"}}>
                         <h1>{catTitle}</h1>
                         {
                             services ?

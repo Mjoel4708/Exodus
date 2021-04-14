@@ -168,7 +168,7 @@ function Form1({ loggedIn, setLoggedIn, userName, userEmail }) {
                         </Form.Group>
 
                         <Form.Group  controlId="formGridZip">
-                        <Form.Label>Your hourly rate</Form.Label>
+                        <Form.Label>Your hourly rate in KSH</Form.Label>
                         <Form.Control type="number" name="rates" ref={register({ required: true })} />
                         </Form.Group>
                     

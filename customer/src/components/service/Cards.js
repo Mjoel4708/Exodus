@@ -9,7 +9,7 @@ import { Link } from "react-router-dom"
 import { Row, Col } from "react-bootstrap";
 import Starbutton from "./Starbutton";
 import RequestForm from "./RequestForm";
-function Cards({service: { id, title, description, createdAt, username, starCount, requestCount, stars }}) {
+function Cards({service: { id, title, description, name, createdAt, username, rates, starCount, requestCount, stars }, user}) {
     const [expanded, setExpanded] = React.useState(false);
     const [open, setOpen] = React.useState(false);
     const handleExpandClick = () => {
@@ -23,7 +23,7 @@ function Cards({service: { id, title, description, createdAt, username, starCoun
     };
     const body = (
         <Grid container direction="column" justify="center" alignItems="center" xs={12} style={{ padding: 90 }}>
-            <RequestForm id={id} username={username} setOpen={setOpen} />
+            <RequestForm id={id} username={user.username} setOpen={setOpen} />
         </Grid>
         
       );
@@ -43,16 +43,16 @@ function Cards({service: { id, title, description, createdAt, username, starCoun
                         </IconButton>
                     }
                     title={username}
-                    subheader={moment(createdAt).fromNow()}
+                    subheader={name}
                 />
                 
                 <CardContent>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography variant="body1" color="textPrimary" component="h1">
                         {title}
                     </Typography>
                 </CardContent>
                     <CardActions disableSpacing>
-                        <Starbutton id={id} username={username} stars={stars} starCount={starCount} />
+                        <Starbutton id={id} username={user.username} stars={stars} starCount={starCount} />
                         <IconButton aria-label="share">
                             <SendIcon onClick={handleOnclick} />
                         </IconButton>
@@ -77,14 +77,16 @@ function Cards({service: { id, title, description, createdAt, username, starCoun
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
                         <Typography paragraph>Description:</Typography>
-                        <Typography paragraph>
-                                
-                        </Typography>
+                        
                         <Typography paragraph>
                                 {description}
                         </Typography>
                         <Typography paragraph>
-                                
+                                Rate per hour in KSH: {rates}
+                                <br />
+                        </Typography>
+                        <Typography paragraph>
+                                Created: {moment(createdAt).fromNow()}
                         </Typography>
                         <Typography>
                             

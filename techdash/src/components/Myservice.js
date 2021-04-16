@@ -1,8 +1,15 @@
 import React from 'react'
 
-import { Chip, Avatar, Divider } from "@material-ui/core";
+
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
+import AcceptRequest from "./AcceptRequest";
 function Myservice({ loading, data, userName }) {
+    
+
+    
+    
+    
+    
     
     
     if(loading){
@@ -22,20 +29,15 @@ function Myservice({ loading, data, userName }) {
                         service.username === userName ? (
                             
                             <div>
-                                {service.requestCount} <NotificationsActiveIcon />
+                                {service.requestCount} <NotificationsActiveIcon style={{float: "left"}}></NotificationsActiveIcon>
                                 <br />
                                 {service.requests.map((request) => (
                                     <div key={request.id} style={{padding: "3px", float: "left"}}>
                                         
-                                        <Chip
-                                            avatar={<Avatar>{request.username.charAt(0)}</Avatar>}
-                                            label={request.username}
-                                            clickable
-                                            component=""
-                                            style={{ cursor: 'pointer' }} 
-                                            onClick={() => alert(`${request.description} from: ${request.username}`)}
                                         
-                                        />
+                                        <AcceptRequest request={request} service={service} />
+                                        
+                                        
                                         
                                         
                                     </div>

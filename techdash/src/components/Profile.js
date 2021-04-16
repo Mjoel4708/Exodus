@@ -46,7 +46,7 @@ function Profile({ userName }) {
                                 <Container className="d-flex justify-content-center">
                                     <Card className="shadow-lg" style={{color: "#b08f26", marginTop: "-50px", width: "800px", zIndex: "1", textAlign: "left" }}>
                                     <Card.Header>
-                                        <Image className="text-center  shadow-lg" roundedCircle src="https://semantic-ui.com/images/avatar/large/elliot.jpg" style={{padding: "5px", backgroundColor: "#f6f6f6", width: "150px", height: "150px", marginTop: "-60px"}} />
+                                        <Image className="text-center  shadow-lg" roundedCircle src="https://semantic-ui.com/images/avatar/large/elliot.jpg" style={{border: "1px solid #eee", padding: "5px", backgroundColor: "#f6f6f6", width: "150px", height: "150px", marginTop: "-60px"}} />
                                         
                                         <h5 style={{color: "#b08f26", fontFamily: "Roboto Slab", fontWeight: "800", paddingTop: "20px", paddingBottom: "15px"}}>{service.name}</h5>
                                         <span>

@@ -15,6 +15,7 @@ const serviceSchema = new Schema({
     requests: [
         {
           description: String,
+          status: String,
           latitude: parseFloat(String),
           longitude: parseFloat(String),
           username: String,

@@ -1,7 +1,7 @@
 import React from 'react'
 import MapGL, {GeolocateControl, Marker} from 'react-map-gl';
-
-import { Grid } from "@material-ui/core"
+import 'mapbox-gl/dist/mapbox-gl.css';
+import {Col} from "react-bootstrap"
 import RoomIcon from '@material-ui/icons/Room';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -10,8 +10,9 @@ const { REACT_APP_MAPBOX_TOKEN } = require('./config')
 const geolocateStyle = {
   top: 0,
   left: 0,
-  margin: 10
+  margin: 0
 };
+
 const positionOptions = {enableHighAccuracy: true};
 
 function GeoMap({ data, userName, loading, error }) {
@@ -21,13 +22,15 @@ function GeoMap({ data, userName, loading, error }) {
         
         latitude: -1.3968888,
         longitude: 36.7927116,
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: 920,
+        height: 400,
         zoom: 18,
         bearing: 0,
         pitch: 50
-      });
-    console.log(data.getServices)
+    });
+    
+    
+    
     if(loading){
       return <h1>Loading ...</h1>
     }
@@ -38,7 +41,7 @@ function GeoMap({ data, userName, loading, error }) {
       const services = data.getServices;
       return(
           services.map((service) => (
-              <Grid key={service.id}>
+              <div key={service.id}>
                   {
                       service.username === userName ? (
                           
@@ -54,7 +57,7 @@ function GeoMap({ data, userName, loading, error }) {
                               
                               <br />
                               {service.requests.map((request) => (
-                                  <div key={request.id} style={{padding: "3px", float: "left"}}>
+                                  <div key={request.id} style={{padding: "0px"}}>
                                       
                                       <Marker key={request.id} latitude={request.latitude} longitude={request.longitude} offsetLeft={-20} offsetTop={-10}>
                                           <div style={{ cursor: 'pointer' }} onClick={() => alert(`${request.username}: ${service.description}, ${service.createdAt} ago`)}>
@@ -85,7 +88,7 @@ function GeoMap({ data, userName, loading, error }) {
                           </MapGL>
                       ): ""
                   }
-              </Grid>
+              </div>
               
           ))
       )

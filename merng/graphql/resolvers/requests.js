@@ -22,6 +22,7 @@ module.exports = {
                 service.requests.unshift({
                     description,
                     username,
+                    status: "waiting",
                     longitude,
                     latitude,
                     createdAt: new Date().toISOString()
@@ -40,6 +41,17 @@ module.exports = {
                 service.requests.splice(requestIndex, 1);
                 await service.save();
                 return service
+            }
+        },
+        async updateRequest(_, { serviceId, requestId, status }, context){
+            const service = await Service.findById(serviceId);
+            if(service){
+                const requestIndex = await service.requests.findIndex((r) => r.id === requestId);
+                const request = service.requests[requestIndex]
+                request.status = status
+                await service.save();
+                return service
+
             }
         }
     },

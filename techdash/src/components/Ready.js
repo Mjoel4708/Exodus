@@ -12,6 +12,7 @@ function Ready({serviceId, ready}) {
       } = usePosition();
     
     const [state, setState] = React.useState(ready);
+
     
     
     const [ updateService] = useMutation(UPDATE_SERVICES_MUTATION, {

@@ -2,8 +2,9 @@ import React from 'react'
 import gql from 'graphql-tag'
 import moment from "moment"
 import Skeleton from '@material-ui/lab/Skeleton';
-
-
+import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
+import PausePresentationIcon from '@material-ui/icons/PausePresentation';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import { useQuery } from "@apollo/react-hooks"
 import { Card } from "react-bootstrap";
 import RequestDeletion from "./RequestDeletion"
@@ -47,7 +48,11 @@ function MyRequests({username}) {
                                                     <p>Description:  {request.description}</p>
                                                     
                                                     <p>Created: {moment(request.createdAt).fromNow()}</p>
-                                                    {request.id}
+                                                    <p>Status: {request.status} {
+                                                        request.status === "rejected" ? <CancelPresentationIcon />
+                                                        :request.status === "accepted" ? <CheckBoxIcon />
+                                                        : <PausePresentationIcon />
+                                                    }</p>
                                                     <RequestDeletion serviceId={service.id} requestId={request.id} />
                                                     
                                                 </Card.Body>
@@ -81,7 +86,7 @@ const FETCH_SERVICES_QUERY = gql`
             }
             requestCount
             requests{
-                id username createdAt description
+                id username createdAt description status
             }
         }
     }

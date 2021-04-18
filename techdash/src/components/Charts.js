@@ -1,52 +1,80 @@
 import React from 'react'
-import { Col, Row } from "react-bootstrap";
-import Chart from "react-apexcharts";
-import { Sidebar } from "."
-function Charts() {
-    const values = {
-        options: {
-          chart: {
-            id: "basic-bar"
-          },
-          xaxis: {
-            categories: ["wk1", "wk2", "wk3", "wk4", "wk5", "wk6", "wk7", "wk8", "wk9"]
-          }
-        },
-        series: [
-          {
-            name: "series-1",
-            data: [30, 40, 45, 50, 49, 60, 70, 91]
-          }
-        ]
-      };
-    return (
-        <div>
-            <Row>
-                <Col md={3}>
-                    <Sidebar />
-                </Col>
-                <Col fluid className="justify-content-center" style={{textAlign: "center", alignContent: "center"}}>
-                <div>
-                    <Chart
-                    options={values.options}
-                    series={values.series}
-                    type="bar"
-                    width="500"
-                    />
-                </div>
-                <div>
-                    <Chart
-                    options={values.options}
-                    series={values.series}
-                    type="line"
-                    width="500"
-                    />
-                </div>
-                </Col>
-            </Row>
-            
-        </div>
-    )
-}
 
+import gql from "graphql-tag";
+import { Col, Row } from "react-bootstrap";
+import { useQuery } from "@apollo/react-hooks";
+import { Sidebar } from '.';
+import DataTable from "./DataTable"
+
+function Charts({userName}) {
+
+  
+  const { loading, error, data } = useQuery(FETCH_SERVICES_QUERY)
+  if(loading){
+    return(
+        <Row>
+          <Col>
+            <Sidebar />
+          </Col>
+          <Col>
+            <h3>Loading...</h3>
+          </Col>
+          <Col>
+
+          </Col>
+        </Row>
+      )
+    } 
+
+    if(data){
+      
+      
+      const services = data.getServices;
+      
+
+      
+        return(
+            services.map((service) => (
+                <div key={service.id}>
+                  
+                    {
+                        service.username === userName ? (
+                          
+                            
+                            <Row className="justify-content-md-center">
+                              <Col md={3}>
+                                <Sidebar />
+                              </Col>
+                                
+                                <Col>
+                                   <DataTable requests={service.requests} service={service} />
+                                </Col>
+                                
+                                
+                            </Row>
+                        ): ""
+                    }
+                  
+                </div>
+                
+            ))
+        )
+      }
+    
+  }
+const FETCH_SERVICES_QUERY = gql`
+    {
+        getServices{
+            id name createdAt username title description rates requestCount starCount
+            stars{
+                id
+                username
+            }
+            requestCount
+            requests{
+                id username createdAt description status
+            }
+        }
+    }
+`
 export default Charts

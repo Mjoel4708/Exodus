@@ -1,7 +1,8 @@
 import React from 'react'
 import MapGL, {GeolocateControl, Marker} from 'react-map-gl';
+import moment from "moment";
 import 'mapbox-gl/dist/mapbox-gl.css';
-import {Col} from "react-bootstrap"
+import {Alert} from "react-bootstrap"
 import RoomIcon from '@material-ui/icons/Room';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -30,7 +31,7 @@ function GeoMap({ data, userName, loading, error }) {
     });
     
     
-    
+    //() => alert(`${request.username}: ${service.description}, ${moment(service.createdAt).fromNow()}`)
     if(loading){
       return <h1>Loading ...</h1>
     }
@@ -60,12 +61,20 @@ function GeoMap({ data, userName, loading, error }) {
                                   <div key={request.id} style={{padding: "0px"}}>
                                       
                                       <Marker key={request.id} latitude={request.latitude} longitude={request.longitude} offsetLeft={-20} offsetTop={-10}>
-                                          <div style={{ cursor: 'pointer' }} onClick={() => alert(`${request.username}: ${service.description}, ${service.createdAt} ago`)}>
+                                          <div style={{ cursor: 'pointer' }} onClick={() => alert(`
+                                           Request by: ${request.username},
+                                           Description: ${request.description},
+                                           Request status: ${request.status}
+                                           Created at:${moment(service.createdAt).fromNow()}`) }>
                                             <RoomIcon 
                                               
                                               width={viewport.zoom * 5}
                                               height={viewport.zoom * 5}
-                                              style={{color: "#F8D210", overflow: "auto"}}
+                                              style={
+                                                request.status === "waiting" ? {color: "#F8D210"}
+                                                : request.status === "accepted" ? {color: "#00ff00"}
+                                                : {color: "#ff0000"}
+                                              }
                                             />
                                             <span>
                                               {request.username}

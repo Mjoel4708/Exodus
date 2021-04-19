@@ -62,17 +62,17 @@ function Profile({ userName }) {
                                             
                                             {service.email}
                                             </Card.Text>
-                                            <Card.Title>Qualification</Card.Title>
+                                            <Card.Title>Category</Card.Title>
                                             
                                             <Card.Text>
                                             
-                                            Certs
+                                            {service.category}
                                             </Card.Text>
-                                            <Card.Title>Experience</Card.Title>
+                                            <Card.Title>Stars</Card.Title>
                                             
                                             <Card.Text>
                                             
-                                            Work experience
+                                            {service.starCount}
                                             </Card.Text>
                                             
                                         </Card.Body>
@@ -94,7 +94,7 @@ function Profile({ userName }) {
 const FETCH_SERVICES_QUERY = gql`
     {
         getServices{
-            id name title email createdAt username title description starCount ready
+            id name title email createdAt username title description category starCount ready
             stars{
                 id
                 username

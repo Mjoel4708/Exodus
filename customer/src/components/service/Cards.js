@@ -23,10 +23,12 @@ function Cards({service: { id, title, description, name, createdAt, username, ra
     };
     const body = (
         <Grid container direction="column" justify="center" alignItems="center" xs={12} style={{ padding: 90 }}>
-            <RequestForm id={id} username={user.username} setOpen={setOpen} />
+            <RequestForm id={id} username={user.username} setOpen={setOpen} user={user} />
         </Grid>
         
-      );
+    );
+    
+
     const img_url = "https://react.semantic-ui.com/images/avatar/large/molly.png";
     return(
         <Row  style={{alignItems: 'center', margin: "2px", padding: "5px"}}>

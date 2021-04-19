@@ -5,7 +5,7 @@ module.exports = {
     Mutation: {
         createRequest: async  (_,
              {
-                 requestInput: {serviceId, username, description, longitude, latitude}
+                 requestInput: {serviceId, username, phoneNumber, description, longitude, latitude}
              },
               context
               ) => {
@@ -22,6 +22,7 @@ module.exports = {
                 service.requests.unshift({
                     description,
                     username,
+                    phoneNumber,
                     status: "waiting",
                     longitude,
                     latitude,

@@ -46,13 +46,13 @@ function DataTable({requests, service}) {
             id: "basic-bar"
           },
           xaxis: {
-            categories: Object.keys(groups)
+            categories: Object.keys(groups).reverse()
           }
         },
         series: [
           {
             name: "series-1",
-            data: countarr
+            data: countarr.reverse()
           }
         ]
     };
@@ -69,6 +69,7 @@ function DataTable({requests, service}) {
         <div>
             
             <div>
+                <h3>Requests count per week</h3>
                 <Chart
                     options={values.options}
                     series={values.series}
@@ -83,6 +84,11 @@ function DataTable({requests, service}) {
                 
                 <Table striped bordered hover size="sm" id="printTable">
                     <thead>
+                        <tr>
+                            <th colspan="4">
+                                Requests
+                            </th>
+                        </tr>
                         <tr>
                         
                         <th>ID</th>

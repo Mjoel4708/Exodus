@@ -68,9 +68,9 @@ function AcceptRequest({request, service}) {
                 </DialogTitle>
                 <DialogContent>
                 <DialogContentText>
-                    {request.description}
-                    <br />
-                    {moment(request.createdAt).fromNow()}
+                    <p>{request.description}</p>
+                    <p>{request.phoneNumber}</p>
+                    <p>{moment(request.createdAt).fromNow()}</p>
                 </DialogContentText>
                 </DialogContent>
                 <DialogActions>

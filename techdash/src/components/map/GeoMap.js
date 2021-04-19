@@ -2,7 +2,7 @@ import React from 'react'
 import MapGL, {GeolocateControl, Marker} from 'react-map-gl';
 import moment from "moment";
 import 'mapbox-gl/dist/mapbox-gl.css';
-import {Alert} from "react-bootstrap"
+
 import RoomIcon from '@material-ui/icons/Room';
 
 import 'mapbox-gl/dist/mapbox-gl.css';

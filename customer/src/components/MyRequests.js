@@ -31,7 +31,7 @@ function MyRequests({username}) {
                         
                         {
                             service && service.requests.map((request) => (
-                                <div>
+                                <div key={request.id}>
                                     {request && request.username === username ? (
                                         <div key={request.id}>
                                             <Card style ={{

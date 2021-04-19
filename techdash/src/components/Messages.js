@@ -13,6 +13,9 @@ function Messages({ userName }) {
     
     return (
         <Container fluid className="justify-content-center" style={{padding: "0px"}} >
+            <Row style={{display: "flex", height: "30px", backgroundColor: "#1d1d1d"}}>
+                
+            </Row>
             <Row>
                 <Col md={3}>
                     <Sidebar />
@@ -56,7 +59,7 @@ const FETCH_SERVICES_QUERY = gql`
             }
             requestCount
             requests{
-                id username createdAt description status longitude latitude
+                id username phoneNumber createdAt description status longitude latitude
             }
         }
     }

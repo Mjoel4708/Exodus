@@ -1,12 +1,13 @@
 import React from 'react';
 import { ProSidebar, Menu, MenuItem, SubMenu,SidebarHeader, SidebarFooter, SidebarContent } from 'react-pro-sidebar';
-import { FaTachometerAlt, FaComments, FaList, FaCalendarAlt, FaRegLaughWink, FaHeart, FaPowerOff, FaChartBar } from 'react-icons/fa'
+import { FaTachometerAlt, FaComments, FaRegAddressCard, FaCalendarAlt, FaRegLaughWink, FaHeart, FaPowerOff, FaChartBar } from 'react-icons/fa'
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link
   } from "react-router-dom";
+
 import Amplify, { Auth } from 'aws-amplify';
 import 'react-pro-sidebar/dist/css/styles.css';
 import {Badge, Button} from "react-bootstrap";
@@ -30,13 +31,13 @@ function Sidebar() {
                 <Menu iconShape="circle">
                 <MenuItem
                     
-                    icon={<FaTachometerAlt />}
-                    suffix={<Badge variant="alert">{"New"}</Badge>}
+                    icon={<FaRegAddressCard />}
+                    
                 ><Link to="/"></Link>
-                    {"Dashbord"}
+                    {"Profile"}
                 </MenuItem>
                 <MenuItem icon={<FaComments />}> {"Requests"}<Link to="/messages" /></MenuItem>
-                <MenuItem as={Link} to="/events" icon={<FaCalendarAlt />}> {"Calendar"}<Link to="/events" /></MenuItem>
+                
                 <MenuItem as={Link} to="/reports" icon={<FaChartBar />}> {"Reports"}<Link to="/reports" /></MenuItem>
                 </Menu>
                 <Menu iconShape="circle">

@@ -36,6 +36,9 @@ function Charts({userName}) {
         return(
             services.map((service) => (
                 <div key={service.id}>
+                  <Row style={{display: "flex", height: "30px", backgroundColor: "#1d1d1d"}} />
+                
+                
                   
                     {
                         service.username === userName ? (

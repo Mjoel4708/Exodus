@@ -4,6 +4,7 @@ import { Navbar, Footer } from "./";
 import MyRequests from "./MyRequests"
 import EditIcon from '@material-ui/icons/Edit';
 function Profile({user}) {
+  console.log(user.attributes)
     return (
         <div style={{padding: "0px"}}>
           <Container maxWidth="xl" fluid style={{padding: "0px"}}>
@@ -20,6 +21,7 @@ function Profile({user}) {
                 {user.username}
                 <br />
                 {user.attributes.email}
+                
               </Typography>
               
               

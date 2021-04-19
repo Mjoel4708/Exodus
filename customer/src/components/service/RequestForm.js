@@ -5,7 +5,7 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 import { useForm } from "react-hook-form";
 
-function RequestForm({ id, username, setOpen }) {
+function RequestForm({ id, username, setOpen, user }) {
     const {
         latitude,
         longitude,
@@ -15,13 +15,14 @@ function RequestForm({ id, username, setOpen }) {
         error,
       } = usePosition();
     
-    const { register, handleSubmit, errors, watch } = useForm();
+    const { register, handleSubmit, errors } = useForm();
     const [value, setValue] = React.useState("");
     const [createRequest] = useMutation(MUTATION_REQUEST_SERVICE, {
         variables: {
             
             serviceId: id,
             username: username,
+            phoneNumber: user.attributes.phone_number,
             latitude: latitude,
             longitude: longitude,
             description: value
@@ -34,8 +35,9 @@ function RequestForm({ id, username, setOpen }) {
     const onSubmit = (data) =>{
         createRequest()
         setOpen(false)
-        console.log(data)
+        
     }
+    console.log(user.attributes.phone_number)
     return (
         <Paper elevation={4} style={{width: 300, height: 200, float: "center", textAlign: "center", padding: 30}}>
             <Grid container spacing={2}>
@@ -72,6 +74,7 @@ const MUTATION_REQUEST_SERVICE = gql`
     mutation createRequest(
         $serviceId: String!
         $username: String!
+        $phoneNumber: String!
         $description: String!
         $longitude: Float!
         $latitude: Float!
@@ -81,6 +84,7 @@ const MUTATION_REQUEST_SERVICE = gql`
             requestInput: {
                 serviceId: $serviceId
                 username: $username
+                phoneNumber: $phoneNumber
                 description: $description
                 longitude: $longitude
                 latitude: $latitude

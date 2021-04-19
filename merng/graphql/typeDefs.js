@@ -21,6 +21,7 @@ module.exports = gql`
     type Request{
        id: ID!
        createdAt: String!
+       phoneNumber: String!
        status: String!
        latitude: Float!
        longitude: Float!
@@ -65,6 +66,7 @@ module.exports = gql`
     input RequestInput{
         serviceId: String!
         username: String!
+        phoneNumber: String!
         description: String!
         longitude: Float!
         latitude: Float!
